@@ -22,11 +22,35 @@ class ContactController extends Controller
     }
 
     // عرض جميع الرسائل في لوحة التحكم
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = Contact::paginate(5);
+        $query = Contact::query();
+
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
+
+        if ($request->filled('email')) {
+            $query->where('email', 'like', '%' . $request->email . '%');
+        }
+
+        if ($request->filled('date')) {
+            $query->whereDate('created_at', $request->date);
+        }
+
+        if ($request->filled('status')) {
+            if ($request->status == 'new') {
+                $query->where('created_at', '>=', now()->subDays(7));
+            } elseif ($request->status == 'old') {
+                $query->where('created_at', '<', now()->subDays(7));
+            }
+        }
+
+        $contacts = $query->paginate(10);
+
         return view('dashboard.contacts.index', compact('contacts'));
     }
+
     // عرض رسالة معينة
     public function show($id)
     {

@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'last_login_at',
+        'last_logout_at',
     ];
 
     /**
@@ -34,6 +36,16 @@ class User extends Authenticatable
     ];
 
     /**
+     * The attributes that should be cast to dates.
+     *
+     * @var array<string>
+     */
+    protected $dates = [
+        'last_login_at',
+        'last_logout_at',
+    ];
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -43,6 +55,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'last_login_at' => 'datetime',
+            'last_logout_at' => 'datetime',
         ];
     }
 }

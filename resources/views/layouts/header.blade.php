@@ -1,12 +1,11 @@
-
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Workup - Corporate Category Bootstrap Responsive Website Template - Home : W3Layouts</title>
+    <title>ABS</title>
     <!-- Google fonts -->
     <link href="//fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
@@ -20,8 +19,21 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="index.html">
-                    <i class="fab fa-wikipedia-w"></i>abs
+                   <img id="logo" src="{{ asset('assets/images/abs.jpeg') }}" alt="" style="width: 90px; height: 75px; padding: 0%; margin: -10%;border-radius: 10px;">
+
                 </a>
+               <style>
+                @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+#logo {
+    animation: float 2s infinite ease-in-out;
+}
+
+               </style>
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -31,10 +43,10 @@
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/about">About</a>
+                            <a class="nav-link" href="/about">À propos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/services">Services</a>
@@ -44,7 +56,7 @@
                         </li>
                     </ul>
                     <form action="#search" method="GET" class="d-flex search-header ms-lg-2">
-                        <input class="form-control" type="search" placeholder="Enter Keyword..." aria-label="Search"
+                        <input class="form-control" type="search" placeholder="Entrez un mot-clé..." aria-label="Search"
                             required>
                         <button class="btn btn-style" type="submit"><i class="fas fa-search"></i></button>
                     </form>
@@ -79,7 +91,7 @@
         <div class="container pt-4">
             <div class="row">
                 <div class="col-lg-4 sub-one-left">
-                    <h6>About </h6>
+                    <h6>À propos</h6>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa officia dicta magni ea
                         at, culpa atque, rerum dolorum voluptas alias
                         qui temporibus ex totam distinctio nobis impedit minus rerum,
@@ -93,27 +105,27 @@
                     </ul>
                 </div>
                 <div class="col-lg-5 col-md-6 mt-lg-0 mt-5 px-lg-5 sub-two-right">
-                    <h6>Recent Posts</h6>
+                    <h6>Articles récents</h6>
                     <div class="footer-post">
                         <ul>
                             <li><a href="#post">Suzan Lois</a></li>
                             <li class="mx-2"><a href="#post">- Nov. 21 - </a></li>
-                            <li><a href="#post">3 comments</a></li>
+                            <li><a href="#post">3 commentaires</a></li>
                         </ul>
-                        <p class="post-footer"><a href="#post">Delivering New Customer Experiences with Workup.</a></p>
+                        <p class="post-footer"><a href="#post">Offrir de nouvelles expériences client avec Workup.</a></p>
                     </div>
                     <div class="footer-post mt-4">
                         <ul>
                             <li><a href="#post">Rose Alha</a></li>
                             <li class="mx-2"><a href="#post">- Nov. 21 - </a></li>
-                            <li><a href="#post">3 comments</a></li>
+                            <li><a href="#post">3 commentaires</a></li>
                         </ul>
-                        <p class="post-footer"><a href="#post">Discussing the current trends in the share market.</a>
+                        <p class="post-footer"><a href="#post">Discuter des tendances actuelles sur le marché des actions.</a>
                         </p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mt-lg-0 mt-5 sub-one-left">
-                    <h6>Contact </h6>
+                    <h6>Contact</h6>
                     <div class="column2">
                         <div class="href1"><span class="fas fa-envelope-open"></span><a
                                 href="mailto:info@example.com">info@example.com</a>
@@ -126,14 +138,13 @@
                                 235 Lane, 10001</p>
                         </div>
                         <div>
-                            <p class="contact-para"><span class="fas fa-clock"></span>Office Hours: 9AM - 7PM</p>
+                            <p class="contact-para"><span class="fas fa-clock"></span>Heures de bureau : 9h - 19h</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="copyright-footer text-center mt-5 pt-sm-4 pt-2">
-                <p>&copy; 2021 Workup. All rights reserved | Design by <a href="https://w3layouts.com/">W3Layouts</a>
-                </p>
+                <p>&copy; 2023 Entreprise. Tous droits réservés.</p>
             </div>
         </div>
     </footer>

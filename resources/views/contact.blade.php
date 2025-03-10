@@ -6,8 +6,8 @@
     <section class="w3l-contact-info-main py-5" id="contact">
         <div class="container pt-lg-5 pt-md-4 pt-2">
             <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:700px;">
-                <h5 class="small-title mb-1">Get In Touch</h5>
-                <h3 class="title-style">Contact Us</h3>
+                <h5 class="small-title mb-1">Contactez-nous</h5>
+                <h3 class="title-style">Nous sommes là pour vous aider</h3>
             </div>
             <div class="row">
                 <div class="col-md-6 left-cont-contact pe-md-4">
@@ -15,8 +15,8 @@
                         <div class="contact-icon d-flex align-items-center">
                             <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                             <div class="ms-3">
-                                <h5 class="contact-text">Visit Us:</h5>
-                                <p>5th Avenue, London</p>
+                                <h5 class="contact-text">Adresse:</h5>
+                                <p>123 Rue de l'Entreprise, Ville, Pays</p>
                             </div>
                         </div>
                     </div>

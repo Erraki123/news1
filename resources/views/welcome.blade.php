@@ -1,4 +1,3 @@
-
 @extends('layouts.header')
 @section('content')
 
@@ -323,6 +322,93 @@
     </section>
     <!-- //progress section -->
 
+    <style>
+      /* استيراد خط أنيق */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap');
+
+/* 🌟 قسم إعلانات متحركة أفقية */
+.moving-ads {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 20px 0;
+    position: relative;
+}
+
+.ads-container {
+    display: flex;
+    gap: 20px;
+    animation: moveLeft 40s linear infinite; /* تم زيادة الوقت إلى 40 ثانية */
+}
+
+.ads-container img {
+    width: 16vw; /* العرض يكون بنسبة للشاشة */
+    max-width: 500px; /* الحد الأقصى لحجم الصورة */
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* تأثير عند تمرير الماوس (يعمل فقط على الكمبيوتر) */
+@media (hover: hover) {
+    .ads-container img:hover {
+        transform: scale(1.2);
+        cursor: pointer;
+    }
+
+    /* إيقاف الحركة عند تمرير الماوس */
+    .moving-ads:hover .ads-container {
+        animation-play-state: paused;
+    }
+}
+
+/* حركة الصور */
+@keyframes moveLeft {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* تحسين الظهور على الأجهزة المختلفة */
+@media (max-width: 768px) {
+    .ads-container img {
+        width: 20vw; /* تكبير الصور على الهاتف */
+    }
+}
+
+@media (min-width: 1200px) {
+    .ads-container img {
+        width: 14vw; /* تصغير الصور على الشاشات الكبيرة */
+    }
+}
+
+
+    </style>
+</head>
+<body>
+
+    <!-- قسم إعلانات متحركة أفقية -->
+    <div class="moving-ads">
+        <div class="ads-container">
+            <img src="/assets/images/bg1.jpg" alt="وشم">
+            <img src="/assets/images/bg1.jpg" alt="وشم">
+            <img src="/assets/images/bg1.jpg" alt="وشم">
+            <img src="/assets/images/bg1.jpg" alt="وشم">
+            <img src="/assets/images/bg1.jpg" alt="وشم">
+            <img src="/assets/images/bg1.jpg" alt="وشم">
+            <img src="/assets/images/bg1.jpg" alt="وشم">
+            <img src="/assets/images/bg1.jpg" alt="وشم">
+            <img src="/assets/images/bg1.jpg" alt="وشم">
+            <img src="/assets/images/bg1.jpg" alt="وشم">
+            <img src="/assets/images/bg1.jpg" alt="وشم">
+           
+            >
+        </div>
+    </div>
+
+</body>
+</html>
+
     <!-- testimonials section -->
     <section class="w3l-index4 py-5" id="testimonials">
         <div class="container py-md-5 py-4">
@@ -392,8 +478,301 @@
             </div>
         </div>
     </section>
-    <!-- //testimonials section -->
 
+
+<!-- الحاوية الخاصة ببطاقات العرض -->
+<div class="container my-5">
+    <div class="row">
+        <!-- بطاقة 1 -->
+        <div class="col-md-4" style="border-radius: 30px;">
+            <div class="بطاقة shadow-lg border-0 rounded" style="border-radius: 30px;">
+                <img src="assets/images/abs.jpeg" class="card-img-top" alt="صورة 1" style="border-top-left-radius: 30px; border-top-right-radius: 30px;">
+                <div class="محتوى-البطاقة d-flex flex-column align-items-center" style="border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;">
+                    <h5 class="عنوان-البطاقة">عنوان 1</h5>
+                    <button class="btn btn-danger mt-3" data-bs-toggle="modal" data-bs-target="#modal1" style="background-color: var(--primary-color); border-radius: 20px;">عرض التفاصيل</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- بطاقة 2 -->
+        <div class="col-md-4" style="border-radius: 30px;">
+            <div class="بطاقة shadow-lg border-0 rounded" style="border-radius: 30px;">
+                <img src="assets/images/abs.jpeg" class="card-img-top" alt="صورة 2" style="border-top-left-radius: 30px; border-top-right-radius: 30px;">
+                <div class="محتوى-البطاقة d-flex flex-column align-items-center" style="border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;">
+                    <h5 class="عنوان-البطاقة">عنوان 2</h5>
+                    <button class="btn btn-danger mt-3" data-bs-toggle="modal" data-bs-target="#modal2" style="background-color: var(--primary-color); border-radius: 20px;">عرض التفاصيل</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- بطاقة 3 -->
+        <div class="col-md-4" style="border-radius: 30px;">
+            <div class="بطاقة shadow-lg border-0 rounded" style="border-radius: 30px;">
+                <img src="assets/images/abs.jpeg" class="card-img-top" alt="صورة 3" style="border-top-left-radius: 30px; border-top-right-radius: 30px;">
+                <div class="محتوى-البطاقة d-flex flex-column align-items-center" style="border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;">
+                    <h5 class="عنوان-البطاقة">عنوان 3</h5>
+                    <button class="btn btn-danger mt-3" data-bs-toggle="modal" data-bs-target="#modal3" style="background-color: var(--primary-color); border-radius: 20px;">عرض التفاصيل</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- بطاقة 4 -->
+        <div class="col-md-4" style="border-radius: 30px;">
+            <div class="بطاقة shadow-lg border-0 rounded" style="border-radius: 30px;">
+                <img src="assets/images/abs.jpeg" class="card-img-top" alt="صورة 4" style="border-top-left-radius: 30px; border-top-right-radius: 30px;">
+                <div class="محتوى-البطاقة d-flex flex-column align-items-center" style="border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;">
+                    <h5 class="عنوان-البطاقة">عنوان 4</h5>
+                    <button class="btn btn-danger mt-3" data-bs-toggle="modal" data-bs-target="#modal4" style="background-color: var(--primary-color); border-radius: 20px;">عرض التفاصيل</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- بطاقة 5 -->
+        <div class="col-md-4" style="border-radius: 30px;">
+            <div class="بطاقة shadow-lg border-0 rounded" style="border-radius: 30px;">
+                <img src="assets/images/abs.jpeg" class="card-img-top" alt="صورة 5" style="border-top-left-radius: 30px; border-top-right-radius: 30px;">
+                <div class="محتوى-البطاقة d-flex flex-column align-items-center" style="border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;">
+                    <h5 class="عنوان-البطاقة">عنوان 5</h5>
+                    <button class="btn btn-danger mt-3" data-bs-toggle="modal" data-bs-target="#modal5" style="background-color: var(--primary-color); border-radius: 20px;">عرض التفاصيل</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- بطاقة 6 -->
+        <div class="col-md-4" style="border-radius: 30px;">
+            <div class="بطاقة shadow-lg border-0 rounded" style="border-radius: 30px;">
+                <img src="assets/images/abs.jpeg" class="card-img-top" alt="صورة 6" style="border-top-left-radius: 30px; border-top-right-radius: 30px;">
+                <div class="محتوى-البطاقة d-flex flex-column align-items-center" style="border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;">
+                    <h5 class="عنوان-البطاقة">عنوان 6</h5>
+                    <button class="btn btn-danger mt-3" data-bs-toggle="modal" data-bs-target="#modal6" style="background-color: var(--primary-color); border-radius: 20px;">عرض التفاصيل</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- مودالات التفاصيل -->
+
+<!-- Modal 1 -->
+<!-- Bouton pour ouvrir le modal -->
+
+<!-- Le Modal -->
+<div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content shadow-lg border-0 rounded-3">
+      
+      <!-- En-tête du modal -->
+      <div class="modal-header bg-light border-0">
+        <h5 class="modal-title fw-bold text-primary" id="modal1Label">Nos Compétences</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Corps du modal -->
+      <div class="modal-body p-4">
+    
+        <!-- Section Stratégie -->
+        <div class="row align-items-center mb-4">
+            <div class="col-lg-6 col-md-12 text-md-center text-lg-start">
+                <h3 class="text-primary">📌 Stratégie</h3>
+                <p>
+                    La stratégie a pour vocation de créer ou re-créer du potentiel pour vos activités. 
+                    Elle engage l'entreprise sur le moyen et le long terme.
+                </p>
+                <ul>
+                    <li>✅ Projet de développement stratégique.</li>
+                    <li>✅ Diagnostic stratégique et plan de progrès.</li>
+                    <li>✅ Coaching.</li>
+                    <li>✅ Leadership.</li>
+                    <li>✅ Management.</li>
+                </ul>
+            </div>
+            <div class="col-lg-6 col-md-12 text-center">
+                <img src="assets/images/abs.jpeg" alt="Stratégie" class="img-fluid rounded shadow-sm modal-img">
+            </div>
+        </div>
+
+        <!-- Section Finance -->
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-12 text-center order-lg-1 order-md-2">
+                <img src="assets/images/abs.jpeg" alt="Finance" class="img-fluid rounded shadow-sm modal-img">
+            </div>
+            <div class="col-lg-6 col-md-12 text-md-center text-lg-start order-lg-2 order-md-1">
+                <h3 class="text-success">💰 Finance</h3>
+                <p>
+                    La fonction finance est une activité clé de l'entreprise qui vient irriguer les autres fonctions 
+                    en leur fournissant les ressources nécessaires à leur développement.
+                </p>
+                <ul>
+                    <li>💡 Audit financier.</li>
+                    <li>💡 Contrôle de gestion.</li>
+                    <li>💡 Comptabilité générale et analytique.</li>
+                    <li>💡 Gestion de trésorerie.</li>
+                    <li>💡 Business plan.</li>
+                    <li>💡 Normes IFRS.</li>
+                </ul>
+            </div>
+        </div>
+
+      </div>
+
+      <!-- Pied du modal -->
+      <div class="modal-footer border-0 d-flex justify-content-center">
+        <button type="button" class="btn btn-danger px-4 py-2 rounded-pill" data-bs-dismiss="modal">
+          إغلاق
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap -->
+
+<!-- Styles CSS pour l'adaptation mobile -->
+<style>
+    /* Ajustement des images pour qu'elles ne dépassent pas l'écran */
+    .modal-img {
+        max-width: 100%;
+        height: auto;
+        border: 3px solid #007bff;
+    }
+
+    /* Animation fluide à l'ouverture du modal */
+    .modal.fade .modal-dialog {
+        transform: scale(0.8);
+        opacity: 0;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+
+    .modal.show .modal-dialog {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    /* Adaptation sur mobile */
+    @media (max-width: 768px) {
+        .modal-body {
+            padding: 20px;
+        }
+        .modal-title {
+            font-size: 1.2rem;
+        }
+        .modal-footer button {
+            width: 100%;
+        }
+    }
+</style>
+
+<!-- Modal 2 -->
+<div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="modal2Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal2Label">تفاصيل المودال 2</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>هنا تفاصيل إضافية للمودال 2.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 3 -->
+<div class="modal fade" id="modal3" tabindex="-1" aria-labelledby="modal3Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal3Label">تفاصيل المودال 3</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>هنا تفاصيل إضافية للمودال 3.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 4 -->
+<div class="modal fade" id="modal4" tabindex="-1" aria-labelledby="modal4Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal4Label">تفاصيل المودال 4</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>هنا تفاصيل إضافية للمودال 4.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 5 -->
+<div class="modal fade" id="modal5" tabindex="-1" aria-labelledby="modal5Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal5Label">تفاصيل المودال 5</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>هنا تفاصيل إضافية للمودال 5.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 6 -->
+<div class="modal fade" id="modal6" tabindex="-1" aria-labelledby="modal6Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal6Label">تفاصيل المودال 6</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>هنا تفاصيل إضافية للمودال 6.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
+<style>
+    /* إضافة مسافات بين البطاقات */
+.بطاقة {
+    margin-bottom: 30px; /* المسافة بين البطاقات */
+}
+
+.محتوى-البطاقة {
+    padding: 10px; /* مساحة داخلية لزيادة وضوح المحتوى */
+}
+.عنوان-البطاقة {
+    font-size: 1.25rem; /* حجم الخط للعنوان */
+}
+.نص-البطاقة {
+    font-size: 1rem; /* حجم الخط للنص */
+}
+
+</style>
     <!-- blog section -->
     <div class="w3l-blog-block-5 py-5" id="blog">
         <div class="container py-md-5 py-4">

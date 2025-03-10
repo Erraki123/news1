@@ -1,141 +1,100 @@
-@extends('dashboard')
+@extends("dashboard")
 @section('content')
 
+@if(session('success'))
+    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+        <span class="block sm:inline">{{ session('success') }}</span>
+    </div>
+@endif
 
-    @if(session('success'))
-        <p style="color: green;">{{ session('success') }}</p>
-    @endif
+<div class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Contacts</h1>
 
-    <table border="1">
-        <tr>
-            <th>الاسم</th>
-            <th>البريد الإلكتروني</th>
-            <th>الرسالة</th>
-            <th>الإجراءات</th>
-        </tr>
-        @foreach ($contacts as $contact)
-            <tr>
-                <td>{{ $contact->name }}</td>
-                <td>{{ $contact->email }}</td>
-                <td>{{ Str::limit($contact->message, 50) }}</td>
-                <td>
-                    <a href="{{ route('contacts.show', $contact->id) }}">عرض</a>
-                    <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" onclick="return confirm('هل أنت متأكد من الحذف؟')">حذف</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-    </table>
+    <!-- Search Filters -->
+    <form method="GET" action="{{ route('contacts.index') }}" class="mb-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <input type="text" name="name" class="form-control" placeholder="Rechercher par nom" value="{{ request('name') }}">
+            <input type="text" name="email" class="form-control" placeholder="Rechercher par email" value="{{ request('email') }}">
+            <input type="date" name="date" class="form-control" placeholder="Rechercher par date" value="{{ request('date') }}">
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+            <select name="status" class="form-control">
+                <option value="">Tous les messages</option>
+                <option value="new" {{ request('status') == 'new' ? 'selected' : '' }}>Nouveaux messages</option>
+                <option value="old" {{ request('status') == 'old' ? 'selected' : '' }}>Anciens messages</option>
+            </select>
+        </div>
+        <div class="text-center mt-4">
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Rechercher</button>
+        </div>
+    </form>
 
-    {{ $contacts->links() }}
-<style>
-    /* Conteneur principal */
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 30px;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white dark:bg-gray-800">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b dark:border-gray-700">الاسم</th>
+                    <th class="py-2 px-4 border-b dark:border-gray-700">البريد الإلكتروني</th>
+                    <th class="py-2 px-4 border-b dark:border-gray-700">الرسالة</th>
+                    <th class="py-2 px-4 border-b dark:border-gray-700">الإجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($contacts as $contact)
+                    <tr>
+                        <td class="py-2 px-4 border-b dark:border-gray-700">{{ $contact->name }}</td>
+                        <td class="py-2 px-4 border-b dark:border-gray-700">{{ $contact->email }}</td>
+                        <td class="py-2 px-4 border-b dark:border-gray-700">{{ Str::limit($contact->message, 50) }}</td>
+                        <td class="py-2 px-4 border-b dark:border-gray-700">
+                            <button onclick="showContactDetails({{ $contact->id }})" class="bg-blue-500 text-white px-4 py-2 rounded-lg mr-2">عرض</button>
+                            <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg" onclick="return confirm('هل أنت متأكد من الحذف؟')">حذف</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
-/* Titre principal */
-h1 {
-    text-align: center;
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-}
+    <div class="mt-4">
+        {{ $contacts->links() }}
+    </div>
+</div>
 
-/* Message de succès */
-p {
-    text-align: center;
-    font-size: 1rem;
-    color: green;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
+<!-- Modal -->
+<div id="contactModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-1/2">
+            <h1 class="text-2xl font-bold mb-4 dark:text-white">تفاصيل الرسالة</h1>
+            <div id="contactDetails">
+                <!-- Contact details will be loaded here -->
+            </div>
+            <button onclick="closeModal()" class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4">إغلاق</button>
+        </div>
+    </div>
+</div>
 
-/* Tableau */
-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+<script>
+    function showContactDetails(contactId) {
+        fetch(`/contacts/${contactId}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('contactDetails').innerHTML = `
+                    <p class="text-lg dark:text-white"><strong>الاسم:</strong> ${data.name}</p>
+                    <p class="text-lg dark:text-white"><strong>البريد الإلكتروني:</strong> ${data.email}</p>
+                    <p class="text-lg dark:text-white"><strong>الرسالة:</strong> ${data.message}</p>
+                `;
+                document.getElementById('contactModal').classList.remove('hidden');
+            });
+    }
 
-/* En-têtes du tableau */
-th {
-    padding: 15px;
-    background-color: #007bff;
-    color: white;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-}
+    function closeModal() {
+        document.getElementById('contactModal').classList.add('hidden');
+    }
+</script>
 
-/* Cellules du tableau */
-td {
-    padding: 12px;
-    text-align: center;
-    font-size: 1rem;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Liens dans le tableau */
-a {
-    display: inline-block;
-    padding: 6px 12px;
-    background-color: #17a2b8;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-a:hover {
-    background-color: #138496;
-    transform: translateY(-2px);
-}
-
-/* Boutons de suppression */
-button[type="submit"] {
-    padding: 6px 12px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-button[type="submit"]:hover {
-    background-color: #c82333;
-    transform: translateY(-2px);
-}
-
-/* Pagination */
-.pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-/* Effet 3D pour les éléments */
-table, th, td, a, button[type="submit"] {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-table:hover, th:hover, td:hover, a:hover, button[type="submit"]:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-</style>
 @endsection
+
